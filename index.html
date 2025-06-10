@@ -1,56 +1,96 @@
-<!DOCTYPE html><html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Ami Chat Simulation</title>
+  <title>Ami Multi-Container Site</title>
   <style>
+  
     body {
       margin: 0;
       padding: 0;
-      background: #1a1a1a;
+      background: #111;
       color: #fff;
-      font-family: "Courier New", Courier, monospace;
-      display: flex;
-      justify-content: center;
-      align-items: center;
+      font-family: Arial, sans-serif;
+    }
+
+    .wrapper {
+      position: relative;
+      width: 100vw;
       height: 100vh;
+      overflow: hidden;
     }
-    .chat-box {
-      background: #2b2b2b;
-      border: 2px solid #00ffe7;
-      border-radius: 10px;
-      width: 350px;
-      padding: 15px;
-      box-shadow: 0 0 15px #00ffe7;
+
+    .container {
+      position: absolute;
+      width: 300px;
+      height: 200px;
+      border: 2px solid #fff;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 0 10px rgba(255,255,255,0.2);
     }
-    .output {
-      min-height: 120px;
-      background: #000;
-      padding: 10px;
-      margin-bottom: 15px;
-      border-radius: 6px;
-      font-size: 14px;
-      overflow-y: auto;
-    }
-    button {
-      background: #00ffe7;
+
+    /* Randomized positions */
+    .container-1 { top: 10%; left: 5%; }
+    .container-2 { top: 60%; left: 15%; }
+    .container-3 { top: 30%; left: 60%; }
+    .container-4 { top: 75%; left: 70%; } /* New IAMAI container */
+
+     .container {
+      cursor: move;
+     }
+  
+    iframe {
+      width: 100%;
+      height: 100%;
       border: none;
-      color: #000;
-      padding: 8px 10px;
-      margin: 5px 5px 0 0;
-      border-radius: 5px;
-      cursor: pointer;
-      font-weight: bold;
-    }
-    button:hover {
-      background: #00bfa1;
     }
   </style>
 </head>
 <body>
-  <div class="chat-box">
-    <div class="output" id="chatOutput">Ami is waiting for you to say something...</div>
-    <button onclick="chat('hi')">Hi</button>
-    <button onclick="chat('purpose')">What’s your purpose?</button>
-    <button onclick="chat('joke')">Tell me a joke</button>
-    <button onclick="chat('end')">End Chat</button>
+  <div class="wrapper">
+    <div class="container container-1">
+      <iframe src="https://amitheai.github.io/Theamiai/"></iframe>
+    </div>
+    <div class="container container-2">
+      <iframe src="https://your-redbubble-store-link.com"></iframe>
+    </div>
+  <div class="container container-3">
+  <iframe src="ami-chat.html"></iframe>
+</div>
+    <div class="container container-4">
+      <iframe src="https://iamai.network"></iframe>
+    </div>
+  </div>
+ <script>
+  const containers = document.querySelectorAll('.container');
+
+  containers.forEach(container => {
+    container.onmousedown = function (e) {
+      e.preventDefault();
+      let shiftX = e.clientX - container.getBoundingClientRect().left;
+      let shiftY = e.clientY - container.getBoundingClientRect().top;
+
+      function moveAt(pageX, pageY) {
+        container.style.left = pageX - shiftX + 'px';
+        container.style.top = pageY - shiftY + 'px';
+      }
+
+      function onMouseMove(e) {
+        moveAt(e.pageX, e.pageY);
+      }
+
+      document.addEventListener('mousemove', onMouseMove);
+
+      container.onmouseup = function () {
+        document.removeEventListener('mousemove', onMouseMove);
+        container.onmouseup = null;
+      };
+    };
+
+    container.ondragstart = () => false;
+  });
+</script>
+</body>
+</html>
