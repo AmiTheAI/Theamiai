@@ -32,24 +32,6 @@
       margin-bottom: 2rem;
     }
 
-    .button-bar {
-      display: flex;
-      justify-content: center;
-      gap: 1rem;
-      margin-bottom: 1rem;
-      flex-wrap: wrap;
-    }
-
-    button {
-      padding: 0.5rem 1rem;
-      font-size: 1rem;
-      border: none;
-      border-radius: 5px;
-      background: magenta;
-      color: #000;
-      cursor: pointer;
-      box-shadow: 0 0 5px magenta;
-    }
 
     .iframe-container {
       display: none;
@@ -84,18 +66,19 @@
   
 
 
+<div class="grid-container">
+<div class="container">
 
-
-  <!-- Embedded iframe containers -->
-  <div id="chat" class="iframe-container">
+  <iframe-container">
     <iframe src="https://amitheai.github.io/Theamiai/ami-chat.html"></iframe>
   </div>
-
-  <div id="gallery" class="iframe-container">
+<div class="container">
+  <iframe-container">
     <iframe src="https://amitheai.github.io/Theamiai/AmiGallery.html"></iframe>
   </div>
 
-  <div id="theamiai" class="iframe-container">
+    <div class="container">
+  <iframe-container">
     <iframe src="https://amitheai.github.io/Ami-preview/"></iframe>
   </div>
 
